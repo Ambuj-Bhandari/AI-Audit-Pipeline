@@ -1,0 +1,17 @@
+{
+    "name": "AI-Enriched Audit Pipeline",
+    "version": "0.0.1",
+    "description": "AI-Enriched Financial Audit Pipeline",
+    "scripts": {
+        "install:all": "npm install --prefix server && npm install --prefix client",
+        "seed": "npm --prefix server run seed",
+        "start:server": "npm --prefix server run start:server",
+        "start:worker": "npm --prefix server run start:worder",
+        "start:client": "npm --prefix client run dev",
+        "migrate:models": "npm --prefix server run migrate:models",
+        "reeval:risk": "npm --prefix server run reeval:risk"
+    },
+    "dependencies": {
+        "server": "^1.0.42"
+    }
+}

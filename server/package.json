@@ -1,0 +1,22 @@
+{
+    "name": "Audit Pipeline Server",
+    "version": "0.0.1",
+    "type": "module",
+    "description": "AI-Enriched Audit Pipeline Server",
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "start:server": " node src/server.js",
+        "start:worder": "node src/worker.js",
+        "seed": "node scripts/seed.js",
+        "migrate:models": "node scripts/migrateModels.js",
+        "reeval:risk": "node scripts/reevaluateRisk.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "mongoose": "8.4.0"
+    }
+}
