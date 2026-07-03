@@ -14,7 +14,7 @@ export class DataBase{
         await mongoose.connect(config.mongoURI, {dbName: config.dbName});
         this.connection = mongoose.connection;
 
-        console.log(`db connection to "${config.dbName}`);
+        console.log(`db connected to "${config.dbName}"`);
         return this.connection;
     }
 

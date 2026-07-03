@@ -39,7 +39,7 @@ const ComplianceSchema = new Schema(
 const IntelligenceSchema = new Schema(
     {
         status: { 
-            type: [Number], 
+            type: String, 
             enum: Object.values(ENRICHMENT_STATUS),
             default: ENRICHMENT_STATUS.PENDING,
         },
@@ -70,7 +70,7 @@ const MetaDataSchema = new Schema(
 const JournalEntrySchema = new Schema(
     {
         postingDate: { type: Date, required: true },
-        transactionType: { type: String, required: 'Journal Entry' },
+        transactionType: { type: String, default: 'Journal Entry' },
         entryNo: { type: String, required: true , index: true },
         name: { type: String, required: true },
         description: { type: String, default: '' },
