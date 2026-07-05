@@ -1,9 +1,7 @@
 import { buildVectorSpaces } from '../utils/vector.js';
-import { EntryService } from './EntryService.js';
 
 export class VectorService {
-    constructor( entry ){
-        if(!entry) return;
+    buildVectors( entry ){
         return buildVectorSpaces(entry);
     }
 

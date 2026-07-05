@@ -22,9 +22,9 @@ export function buildContainer() {
     });
 
     const similarityService = new SimilarityService({ entryRepository });
-    const queueManger = new QueueManager({ jobRepository });
+    const queueManager = new QueueManager({ jobRepository });
     const entryService = new EntryService({
-        entryRepository, queueManger, enrichmentService, similarityService
+        entryRepository, queueManager, enrichmentService, similarityService
     });
 
     const entryController = new EntryController({ entryService });
@@ -36,7 +36,7 @@ export function buildContainer() {
         jobRepository,
         enrichmentService,
         similarityService,
-        queueManger,
+        queueManager,
         entryService,
         entryController,
         entryRouter,

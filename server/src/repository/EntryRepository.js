@@ -8,7 +8,7 @@ export class EntryRepository {
         return JournalEntry.create(data);
     }
 
-    list({limit = 100}={}){
+    list({limit = 100} = {}){
         return JournalEntry.find().sort({ created: -1 }).limit(limit).lean();
     }
 

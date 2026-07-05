@@ -12,7 +12,7 @@ export class EntryController{
 
     async list(req, res, next){
         try{
-            const entries = await this.entryService.list({ list: Number(req.query.limit) || 100 });
+            const entries = await this.entryService.list({ limit: Number(req.query.limit) || 100 });
             res.json({entries});
         }catch(err){
             next(err);
@@ -21,8 +21,8 @@ export class EntryController{
 
     async get(req, res, next){
         try{
-            const entries = await this.entryService.get(req.params.id);
-            if(!entries) return res.status(404).json({error:'Entry Not Found'});
+            const entry = await this.entryService.get(req.params.id);
+            if(!entry) return res.status(404).json({error:'Entry Not Found'});
 
             res.json({entry});
         }

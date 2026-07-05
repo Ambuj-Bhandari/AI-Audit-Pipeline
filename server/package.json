@@ -10,7 +10,7 @@
         "start:server": " node src/server.js",
         "start:worker": "node src/worker.js",
         "seed": "node scripts/seed.js",
-        "migrate:models": "node scripts/models/migrateModels.js",
+        "migrate:models": "node scripts/migrateModels.js",
         "reeval:risk": "node scripts/reevaluateRisk.js"
     },
     "dependencies": {

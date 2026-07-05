@@ -1,12 +1,15 @@
 import { MODEL_LATENCY_MS, CURRENT_MODEL_VERSION, ENRICHMENT_STATUS } from "../constants/index.js";
+import { RiskScoringService } from './RiskScoringService.js';
+import { AnomalyDetectionService } from './AnomalyDetectionService.js';
+import { VectorService } from './VectorService.js';
 
 const sleep = (ms)=> new Promise((resolve) => setTimeout(resolve,ms));
 
 export class EnrichmentService{
-    constructor({ riskService, anomalyService, vectorService }){
-        this.riskService = riskService;
-        this.anomalyService = anomalyService;
-        this.vectorService = vectorService;
+    constructor({ riskService, anomalyService, vectorService } = {}){
+        this.riskService = riskService || new RiskScoringService();
+        this.anomalyService = anomalyService || new AnomalyDetectionService();
+        this.vectorService = vectorService || new VectorService();
     }
 
     async runFull(entry){
