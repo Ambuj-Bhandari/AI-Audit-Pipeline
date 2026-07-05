@@ -8,9 +8,9 @@
     },
     "scripts": {
         "start:server": " node src/server.js",
-        "start:worder": "node src/worker.js",
+        "start:worker": "node src/worker.js",
         "seed": "node scripts/seed.js",
-        "migrate:models": "node scripts/migrateModels.js",
+        "migrate:models": "node scripts/models/migrateModels.js",
         "reeval:risk": "node scripts/reevaluateRisk.js"
     },
     "dependencies": {

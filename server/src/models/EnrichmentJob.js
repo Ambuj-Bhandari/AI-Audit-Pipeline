@@ -12,7 +12,7 @@ const EnrichmentJobSchema = new Schema(
             type: String,
             enum: Object.values(JOB_STATUS),
             default: JOB_STATUS.PENDING,
-            index = true,
+            index: true,
         },
         attempts: { type: Number, default: 0 },
         reason: { type: String, default: '' },

@@ -12,7 +12,7 @@ export class Worker{
 
     start(){
         this.running = true;
-        console.log(`worker started --- polling every ${config.workerPollInterval}`);
+        console.log(`worker started --- polling every ${config.workerPollInterval} ms`);
         this.loop();
     }
 
@@ -33,7 +33,7 @@ export class Worker{
         }catch(err){
             console.error('worker loop error: ', err);
         }
-        this.timer = setTimeout(()=> this.loop(),config.workerPollInterval);
+        this.timer = setTimeout(() => this.loop(), config.workerPollInterval);
     }
 
     async tick(){

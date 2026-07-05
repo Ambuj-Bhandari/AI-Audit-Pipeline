@@ -19,7 +19,7 @@ export class EnrichmentService{
 
         return {
             status: ENRICHMENT_STATUS.COMPLETE,
-            modelVersion = CURRENT_MODEL_VERSION,
+            modelVersion: CURRENT_MODEL_VERSION,
             riskScore,
             severity,
             anomalies,

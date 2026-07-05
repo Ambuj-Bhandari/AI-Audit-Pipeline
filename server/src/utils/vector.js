@@ -1,7 +1,7 @@
 import { VECTOR_DIMENSIONS } from "../constants/index.js";
 
 
-export function cosineSimilarity(a=[], v=[]){
+export function cosineSimilarity(a=[], b=[]){
     if (!a.length || a.length!=b.length) return 0;
 
     let dot = 0;
@@ -43,7 +43,7 @@ function seededVector(seed, dims = VECTOR_DIMENSIONS){
 
 export function buildVectorSpaces(entry){
     return {
-        semantic: seededVector(`sem: ${entry.description|| ''}`),
+        semantic: seededVector(`sem: ${entry.description || ''}`),
         financial: seededVector(`fin: ${entry.amount}|${entry.debit}|${entry.credit}|${entry.currency}`),
         entity: seededVector(`ent: ${entry.name || ''}|${entry.glNumber || ''}|${entry.companyId || ''}`),
     };
