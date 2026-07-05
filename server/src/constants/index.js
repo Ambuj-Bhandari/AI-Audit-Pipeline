@@ -1,4 +1,4 @@
-export const CURRENT_MODEL_VERSION = 'v1';
+export const CURRENT_MODEL_VERSION = 'v2';
 export const MODEL_LATENCY_MS = 400;
 
 export const CORE_FIELDS = ['amount','description', 'glNumber', 'postingDate'];

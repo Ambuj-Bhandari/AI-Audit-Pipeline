@@ -32,7 +32,6 @@ export class EntryRepository {
         return JournalEntry.updateOne({_id: id}, {$set});
     }
 
-
     findById(id){
         return JournalEntry.findById(id).lean();
     }
@@ -42,5 +41,31 @@ export class EntryRepository {
             _id: { $ne: excludeId },
             'intelligence.status': ENRICHMENT_STATUS.COMPLETE,
         }).lean();
+    }
+
+    setRiskAndCompliance(id, { riskScore, severity, anomalies, compliance, computedAt }){
+        return JournalEntry.updateOne(
+            {_id: id},
+            {
+                $set: {
+                    "intelligence.riskScore": riskScore,
+                    "intelligence.severity": severity,
+                    "intelligence.anomalies": anomalies,
+                    "intelligence.compliance": compliance,
+                    "intelligence.computerAt": computedAt,
+                }
+            }
+        );
+    }
+
+    async pageStale(afterId, targetVersion, batchSize){
+        const query = { "intelligence.modelVersion": { $ne: targetVersion } };
+        if(afterId) query._id = { $gt: afterId };
+        return JournalEntry.find(query).sort({ _id: 1 }).limit(batchSize).lean();
+    }
+
+    async pageAll(afterId, batchSize){
+        const query = afterId? { _id: { $gt: afterId } }: {};
+        return JournalEntry.find(query).sort({ _id: 1 }).limit(batchSize).lean();
     }
 }

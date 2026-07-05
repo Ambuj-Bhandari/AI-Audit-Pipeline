@@ -1,6 +1,5 @@
 import { database } from '../src/config/db.js';
 import { EntryRepository } from '../src/repository/EntryRepository.js';
-import { CURRENT_MODEL_VERSION } from '../src/constants/index.js';
 import { EnrichmentService } from '../src/services/EnrichmentService.js';
 
 const BATCH_SIZE = Number(process.env.MIGRATE_BATCH_SIZE) || 100;
@@ -11,30 +10,24 @@ async function run() {
     const repo = new EntryRepository();
     const enrichment = new EnrichmentService();
 
-    console.log(`[migrate] target model version: ${CURRENT_MODEL_VERSION} (batch size ${BATCH_SIZE})`);
-
     let afterId = null;
-    let migrated = 0;
-    let batchNo = 0;
+    let updated = 0;
 
     while(true){
-        const batch = await repo.pageStale(afterId, CURRENT_MODEL_VERSION, BATCH_SIZE);
+        const batch = await repo.pageAll(afterId, BATCH_SIZE);
         if(batch.length === 0) break;
 
-        batchNo+=1;
-        console.log(`[migrate] batch ${batchNo}: ${batch.length} stale record(s)`);
-
         for(const entry of batch){
-            const intelligence = await enrichment.runFull(entry);
+            const partial = await enrichment.runRiskOnly(entry);
 
-            await repo.setIntelligence(entry._id, intelligence);
-            migrated+=1;
+            await repo.setRiskAndCompliance(entry._id, partial);
+            updated+=1;
         }
         afterId = batch[batch.length - 1]._id;
         if(batch.length < BATCH_SIZE) break;
     }
 
-    console.log(`[migrate] complete -- ${migrated} record(s) upgraded to ${CURRENT_MODEL_VERSION}`);
+    console.log(`[re-eval] complete -- re-computed Risk/Compliance for ${updated} record(s) (vectors untouched)`);
     await database.disconnect();
 
 }
