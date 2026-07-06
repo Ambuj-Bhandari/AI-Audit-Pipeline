@@ -1,0 +1,77 @@
+:root{
+    --ink: #0d1b2a;
+    --ink-2: #1b263b;
+    --paper: #f5f7fa;
+    --accent: #2ec4b6;
+    --risk-low: #2e7d32;
+    --risk-medium: #b8860b;
+    --risk-high: #c1121f;
+}
+
+body{
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.command-bar{
+    background: linear-gradient(90deg, var(--ink) 0%, var(--ink-2) 100%);
+    color: #e8eef4;
+    border-bottom: 3px solid var(--accent);
+}
+
+.command-bar .brand{
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.command-bar .brand-mark{
+    color: var(--accent);
+}
+
+.command-bar .tagline{
+    color: #9fb3c8;
+    font-size: 0.8rem;
+}
+
+.mono{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.risk-low { color: var(--risk-low); }
+.risk-medium { color: var(--risk-medium); }
+.risk-high { color: var(--risk-high); }
+
+.row-risk-high { background: rgba(193, 18, 31, 0.06);}
+.row-risk-medium { background: rgba(184, 134, 11, 0.06);}
+
+.badge-risk-low { background: var(--risk-low); }
+.badge-risk-medium { background: var(--risk-medium); }
+.badge-risk-high { background: var(--risk-high); }
+
+.stat-card { border: none; border-left: 4px solid var(--accent); }
+.stat-card .stat-value { font-size: 1.6rem; font-weight: 700; }
+.stat-card .stat-label { color: #6c757d; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05rem; }
+
+.entry-row { cursor: pointer; }
+.entry-row:hover { background: rgba(46, 196, 182, 0.08); }
+
+.vector-strip{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.vector-cell{
+    width: 34px;
+    height: 22px;
+    border-radius: 3px;
+    font-size: 0.6rem;
+    display:  flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    font-family: ui-monospace, monospace;
+}
+
+.strategy-toogle .btn { min-width: 96px; }

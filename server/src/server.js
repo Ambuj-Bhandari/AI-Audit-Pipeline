@@ -3,6 +3,10 @@ import { config } from './config/env.js';
 import { buildContainer } from './container.js';
 import { App } from './app.js';
 
+import dns from 'node:dns';
+dns.setServers(['1.1.1.1', '8.8.8.8']);
+
+
 async function main() {
     await database.connect();
     const { entryRouter } = buildContainer();
