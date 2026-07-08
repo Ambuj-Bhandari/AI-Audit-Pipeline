@@ -19,7 +19,7 @@ export class JobRepository {
         return EnrichmentJob.findOneAndUpdate(
             { status: JOB_STATUS.PENDING },
             { $set: { status: JOB_STATUS.PROCESSING, claimedAt: new Date() }, $inc: { attempts: 1 } },
-            { sort: { createdAt: 1 }, new: true }
+            { sort: { createdAt: 1 }, returnDocument: 'after' }
         ).lean();
     }
 
